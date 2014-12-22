@@ -27,14 +27,14 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="IIF-gM-In8">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lLN-eU-x5A">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lLN-eU-x5A" customClass="CSStickyHeaderFlowLayout">
                             <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="albumCell" id="gki-5m-wa7">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="albumCell" id="gki-5m-wa7" userLabel="Album Cell">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -46,6 +46,26 @@
                                 <size key="customSize" width="100" height="100"/>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="headerView" id="xAb-GJ-576" userLabel="Header View">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yCo-Ct-OUm">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="HIQ-mN-QGD">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </view>
+                                    <blurEffect style="light"/>
+                                </visualEffectView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="yCo-Ct-OUm" secondAttribute="trailing" id="8f8-fi-YoB"/>
+                                <constraint firstItem="yCo-Ct-OUm" firstAttribute="leading" secondItem="xAb-GJ-576" secondAttribute="leading" id="JsG-wH-4MR"/>
+                                <constraint firstAttribute="bottom" secondItem="yCo-Ct-OUm" secondAttribute="bottom" id="sVE-62-gpC"/>
+                                <constraint firstItem="yCo-Ct-OUm" firstAttribute="top" secondItem="xAb-GJ-576" secondAttribute="top" id="w24-i8-uZb"/>
+                            </constraints>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="gUO-zt-arg" id="H2h-RH-F90"/>
                             <outlet property="delegate" destination="gUO-zt-arg" id="FFN-cW-Myd"/>

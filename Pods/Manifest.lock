@@ -1,1 +1,10 @@
+PODS:
+  - CSStickyHeaderFlowLayout (0.2.3)
+
+DEPENDENCIES:
+  - CSStickyHeaderFlowLayout
+
+SPEC CHECKSUMS:
+  CSStickyHeaderFlowLayout: c5595da1cf91cce22aca70c44ab80b59247c723c
+
 COCOAPODS: 0.35.0

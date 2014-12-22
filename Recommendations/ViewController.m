@@ -7,10 +7,11 @@
 //
 
 #import "ViewController.h"
+#import <CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.h>
 
 @interface ViewController ()
 
-@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
+@property (weak, nonatomic) IBOutlet CSStickyHeaderFlowLayout *flowLayout;
 
 @end
 
@@ -37,5 +38,8 @@
     return [self.collectionView dequeueReusableCellWithReuseIdentifier:@"albumCell" forIndexPath:indexPath];
 }
 
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    return [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"headerView" forIndexPath:indexPath];
+}
 
 @end

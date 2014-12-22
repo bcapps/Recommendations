@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-CSStickyHeaderFlowLayout.xcscheme</key>
+		<key>Pods-FSQCollectionViewAlignedLayout.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -17,12 +17,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>4A638543F21B16A75819B5E0</key>
+		<key>4F1B895911AED8F1553F0AA2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DACAAF2E9CF1D89F45AFFE7F</key>
+		<key>CEA436B1CF2FCED8CF86C21B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

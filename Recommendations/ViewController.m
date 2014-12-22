@@ -7,11 +7,12 @@
 //
 
 #import "ViewController.h"
-#import <CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.h>
+#import <FSQCollectionViewAlignedLayout/FSQCollectionViewAlignedLayout.h>
 
-@interface ViewController ()
+@interface ViewController () <FSQCollectionViewDelegateAlignedLayout>
+@property (weak, nonatomic) IBOutlet FSQCollectionViewAlignedLayout *alignedLayout;
 
-@property (weak, nonatomic) IBOutlet CSStickyHeaderFlowLayout *flowLayout;
+@property (weak, nonatomic) IBOutlet FSQCollectionViewAlignedLayout *flowLayout;
 
 @end
 
@@ -20,9 +21,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.collectionView.alwaysBounceVertical = YES;
+    self.alignedLayout.defaultSectionAttributes = [FSQCollectionViewAlignedLayoutSectionAttributes topLeftAlignment];
+    self.alignedLayout.defaultCellSize = CGSizeMake(150, 150);
+    self.alignedLayout.defaultCellAttributes = [FSQCollectionViewAlignedLayoutCellAttributes defaultCellAttributes];
     
-    self.flowLayout.minimumInteritemSpacing = 10;
+    self.collectionView.alwaysBounceVertical = YES;
+    self.collectionView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
     
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -43,7 +47,7 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(100, 100);
+    return CGSizeMake(200, 200);
 }
 
 @end

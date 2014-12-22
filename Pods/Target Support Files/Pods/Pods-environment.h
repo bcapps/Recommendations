@@ -6,9 +6,9 @@
 // project.
 
 
-// CSStickyHeaderFlowLayout
-#define COCOAPODS_POD_AVAILABLE_CSStickyHeaderFlowLayout
-#define COCOAPODS_VERSION_MAJOR_CSStickyHeaderFlowLayout 0
-#define COCOAPODS_VERSION_MINOR_CSStickyHeaderFlowLayout 2
-#define COCOAPODS_VERSION_PATCH_CSStickyHeaderFlowLayout 3
+// FSQCollectionViewAlignedLayout
+#define COCOAPODS_POD_AVAILABLE_FSQCollectionViewAlignedLayout
+#define COCOAPODS_VERSION_MAJOR_FSQCollectionViewAlignedLayout 1
+#define COCOAPODS_VERSION_MINOR_FSQCollectionViewAlignedLayout 0
+#define COCOAPODS_VERSION_PATCH_FSQCollectionViewAlignedLayout 2
 

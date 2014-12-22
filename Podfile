@@ -1,1 +1,1 @@
-pod "CSStickyHeaderFlowLayout"
+pod 'FSQCollectionViewAlignedLayout', '~> 1.0'

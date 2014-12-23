@@ -67,6 +67,8 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     NYTMediaDetailView *view = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"detailView" forIndexPath:indexPath];
     
+    view.arrowHorizontalCenterValue = CGRectGetMidX([[self.alignedLayout layoutAttributesForItemAtIndexPath:indexPath] frame]);
+        
     NYTMediaDetailTableViewController *mediaViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mediaDetailTableViewController"];
     view.parentViewController = self;
     view.songDetailViewController = mediaViewController;

@@ -122,8 +122,6 @@
     
     CGRect contentRect = CGRectMake(0, 0, self.collectionViewContentSize.width, self.collectionViewContentSize.height);
     
-
-    
     if (!CGRectIntersectsRect(targetRect, contentRect)) {
         // Outside our bounds, so return nil!
         return nil;
@@ -263,6 +261,5 @@ NSUInteger boundIndexWithComparisonBlock(SearchComparisonBlock comparisonBlock, 
     
     return NSMakeRange(lowerBoundIndex, (upperBoundIndex - lowerBoundIndex) + 1);
 }
-
 
 @end

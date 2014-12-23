@@ -18,10 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.alignedLayout.itemSize = CGSizeMake(90, 90);
 
-    
 //    self.alignedLayout.defaultSectionAttributes = [FSQCollectionViewAlignedLayoutSectionAttributes topLeftAlignment];
 //    self.alignedLayout.defaultCellSize = CGSizeMake(150, 150);
 //    self.alignedLayout.defaultCellAttributes = [FSQCollectionViewAlignedLayoutCellAttributes defaultCellAttributes];
@@ -38,6 +35,10 @@
     }
     
     [self.collectionViewLayout invalidateLayout];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self.collectionView setCollectionViewLayout:[[NYTMediaGridLayout alloc] init] animated:YES];
 }
 
 #pragma mark - UICollectionViewDataSource

@@ -7,7 +7,7 @@
 //
 
 #import "NYTMediaGridLayout.h"
-#import "NYTMediaGridLayoutSection.h";
+#import "NYTMediaGridLayoutSection.h"
 
 @interface NYTMediaGridLayout ()
 
@@ -85,6 +85,11 @@
             
             itemSize.width = MIN(columnWidth, itemSize.width);
             
+            if ([self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]].isSelected) {
+#warning Do supplementary view layout here.
+                itemSize.height = 500;
+            }
+            
             CGFloat columnStartingX = currentColumn * columnWidth;
             CGFloat itemXValue = columnStartingX + (columnWidth / 2.0 - itemSize.width / 2.0);
             
@@ -110,6 +115,10 @@
 
     self.layoutSections = layoutSections;
     self.contentHeight = currentOverallYValue;
+}
+
+- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return [self.layoutSections[indexPath.section] cellsLayoutAttributes][indexPath.item];
 }
 
 - (CGSize)collectionViewContentSize {

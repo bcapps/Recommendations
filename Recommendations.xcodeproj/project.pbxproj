@@ -10,6 +10,8 @@
 		07DFC3D629F7086EB6F9CF20 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADF78E671BC0323FF8792CB /* libPods.a */; };
 		B53852B31A48E47F00E2FF24 /* NYTMediaGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B53852B21A48E47F00E2FF24 /* NYTMediaGridLayout.m */; };
 		B53852B61A48FD8D00E2FF24 /* NYTMediaGridLayoutSection.m in Sources */ = {isa = PBXBuildFile; fileRef = B53852B51A48FD8D00E2FF24 /* NYTMediaGridLayoutSection.m */; };
+		B53852B91A49158600E2FF24 /* NYTMediaDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = B53852B81A49158600E2FF24 /* NYTMediaDetailView.m */; };
+		B53852BD1A49163900E2FF24 /* NYTMediaDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B53852BC1A49163900E2FF24 /* NYTMediaDetailView.xib */; };
 		B5D4F6EB1A48B2820058FB92 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D4F6EA1A48B2820058FB92 /* main.m */; };
 		B5D4F6EE1A48B2820058FB92 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D4F6ED1A48B2820058FB92 /* AppDelegate.m */; };
 		B5D4F6F11A48B2820058FB92 /* Recommendations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5D4F6EF1A48B2820058FB92 /* Recommendations.xcdatamodeld */; };
@@ -37,6 +39,9 @@
 		B53852B21A48E47F00E2FF24 /* NYTMediaGridLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTMediaGridLayout.m; sourceTree = "<group>"; };
 		B53852B41A48FD8D00E2FF24 /* NYTMediaGridLayoutSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTMediaGridLayoutSection.h; sourceTree = "<group>"; };
 		B53852B51A48FD8D00E2FF24 /* NYTMediaGridLayoutSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTMediaGridLayoutSection.m; sourceTree = "<group>"; };
+		B53852B71A49158600E2FF24 /* NYTMediaDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTMediaDetailView.h; sourceTree = "<group>"; };
+		B53852B81A49158600E2FF24 /* NYTMediaDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTMediaDetailView.m; sourceTree = "<group>"; };
+		B53852BC1A49163900E2FF24 /* NYTMediaDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NYTMediaDetailView.xib; sourceTree = "<group>"; };
 		B5D4F6E51A48B2820058FB92 /* Recommendations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recommendations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5D4F6E91A48B2820058FB92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5D4F6EA1A48B2820058FB92 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -109,6 +114,9 @@
 				B53852B21A48E47F00E2FF24 /* NYTMediaGridLayout.m */,
 				B53852B41A48FD8D00E2FF24 /* NYTMediaGridLayoutSection.h */,
 				B53852B51A48FD8D00E2FF24 /* NYTMediaGridLayoutSection.m */,
+				B53852B71A49158600E2FF24 /* NYTMediaDetailView.h */,
+				B53852B81A49158600E2FF24 /* NYTMediaDetailView.m */,
+				B53852BC1A49163900E2FF24 /* NYTMediaDetailView.xib */,
 				B5D4F6EC1A48B2820058FB92 /* AppDelegate.h */,
 				B5D4F6ED1A48B2820058FB92 /* AppDelegate.m */,
 				B5D4F6F21A48B2820058FB92 /* ViewController.h */,
@@ -238,6 +246,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B53852BD1A49163900E2FF24 /* NYTMediaDetailView.xib in Resources */,
 				B5D4F6F71A48B2820058FB92 /* Main.storyboard in Resources */,
 				B5D4F6FC1A48B2820058FB92 /* LaunchScreen.xib in Resources */,
 				B5D4F6F91A48B2820058FB92 /* Images.xcassets in Resources */,
@@ -293,6 +302,7 @@
 			files = (
 				B5D4F6F11A48B2820058FB92 /* Recommendations.xcdatamodeld in Sources */,
 				B5D4F6EE1A48B2820058FB92 /* AppDelegate.m in Sources */,
+				B53852B91A49158600E2FF24 /* NYTMediaDetailView.m in Sources */,
 				B53852B61A48FD8D00E2FF24 /* NYTMediaGridLayoutSection.m in Sources */,
 				B53852B31A48E47F00E2FF24 /* NYTMediaGridLayout.m in Sources */,
 				B5D4F6F41A48B2820058FB92 /* ViewController.m in Sources */,

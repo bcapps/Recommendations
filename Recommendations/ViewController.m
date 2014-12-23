@@ -22,7 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:@"detailView" withReuseIdentifier:@"detailView"];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"NYTMediaDetailView" bundle:nil] forSupplementaryViewOfKind:@"detailView" withReuseIdentifier:@"detailView"];
+    //[self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:@"detailView" withReuseIdentifier:@"detailView"];
     
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
@@ -63,8 +64,7 @@
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *view = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"detailView" forIndexPath:indexPath];
-    view.backgroundColor = [UIColor greenColor];
-    
+    [view setNeedsUpdateConstraints];
     return view;
 }
 

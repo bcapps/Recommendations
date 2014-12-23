@@ -9,7 +9,7 @@
 #import "NYTMediaGridLayout.h"
 #import "NYTMediaGridLayoutSection.h"
 
-const CGFloat NYTMediaGridLayoutSelectedSupplementaryViewHeight = 200;
+const CGFloat NYTMediaGridLayoutSelectedSupplementaryViewHeight = 300;
 
 @interface NYTMediaGridLayout ()
 
@@ -47,6 +47,14 @@ const CGFloat NYTMediaGridLayoutSelectedSupplementaryViewHeight = 200;
 - (void)commonInitialization {
     _itemSize = CGSizeMake(100, 100);
     _verticalRowSpacing = 10;
+}
+
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
+    if (CGSizeEqualToSize(self.collectionView.bounds.size, newBounds.size)) {
+        return NO;
+    }
+    
+    return YES;
 }
 
 - (void)prepareLayout {
@@ -307,3 +315,4 @@ NSUInteger boundIndexWithComparisonBlock(SearchComparisonBlock comparisonBlock, 
 }
 
 @end
+

@@ -34,7 +34,7 @@
         return;
     }
     
-    [self.collectionViewLayout invalidateLayout];
+    [self.collectionViewLayout invalidateLayout];    
 }
 
 #pragma mark - UICollectionViewDelegate

@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 NYTimes. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface NYTMediaDetailView : UICollectionReusableView
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *itemArtImageView;
 
 @end

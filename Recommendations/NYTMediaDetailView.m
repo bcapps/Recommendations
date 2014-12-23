@@ -108,9 +108,16 @@
         CGRect arrowRect = CGRectMake(CGRectGetMinX(outerRect) + arrowEdge, CGRectGetMinY(rect), ARROW_BASE, ARROW_HEIGHT);
         
         [path moveToPoint:CGPointMake(CGRectGetMinX(innerRect), CGRectGetMinY(outerRect))];
-        [path addLineToPoint:CGPointMake(CGRectGetMinX(arrowRect), CGRectGetMinY(outerRect))];
-        [path addLineToPoint:CGPointMake(CGRectGetMidX(arrowRect), CGRectGetMinY(arrowRect))];
-        [path addLineToPoint:CGPointMake(CGRectGetMaxX(arrowRect), CGRectGetMinY(outerRect))];
+        
+        CGPoint arrowLeftEdgePoint = CGPointMake(CGRectGetMinX(arrowRect), CGRectGetMinY(outerRect));
+        CGPoint arrowTopPoint = CGPointMake(CGRectGetMidX(arrowRect), CGRectGetMinY(arrowRect));
+        CGPoint arrowRightEdgePoint = CGPointMake(CGRectGetMaxX(arrowRect), CGRectGetMinY(outerRect));
+
+        // Old arrow
+//        [path addLineToPoint:arrowLeftEdgePoint];
+//        [path addLineToPoint:arrowTopPoint];
+//        [path addLineToPoint:arrowRightEdgePoint];
+        
         [path addArcWithCenter:CGPointMake(CGRectGetMaxX(innerRect), CGRectGetMinY(innerRect))
                         radius:radius startAngle:DEG_TO_RAD(270.0f) endAngle:DEG_TO_RAD(0.0f) clockwise:YES];
         [path addArcWithCenter:CGPointMake(CGRectGetMaxX(innerRect), CGRectGetMaxY(innerRect))
@@ -119,6 +126,20 @@
                         radius:radius startAngle:DEG_TO_RAD(90.0f) endAngle:DEG_TO_RAD(180.0f) clockwise:YES];
         [path addArcWithCenter:CGPointMake(CGRectGetMinX(innerRect), CGRectGetMinY(innerRect))
                         radius:radius startAngle:DEG_TO_RAD(180.0f) endAngle:DEG_TO_RAD(270.0f) clockwise:YES];
+        
+        
+        CGFloat cpLowerOffset = 7;
+        CGFloat cpUpperOffset = 5;
+        
+        CGPoint arrowPoint = arrowTopPoint;
+        
+        UIBezierPath *arrowPath = [[UIBezierPath alloc] init];
+        [arrowPath moveToPoint:arrowLeftEdgePoint];
+        [arrowPath addCurveToPoint:arrowPoint controlPoint1:CGPointMake(arrowLeftEdgePoint.x + cpLowerOffset, arrowLeftEdgePoint.y) controlPoint2:CGPointMake(arrowPoint.x - cpUpperOffset, arrowPoint.y)];
+        [arrowPath addCurveToPoint:arrowRightEdgePoint controlPoint1:CGPointMake(arrowPoint.x + cpUpperOffset, arrowPoint.y) controlPoint2:CGPointMake(arrowRightEdgePoint.x - cpLowerOffset, arrowRightEdgePoint.y)];
+        [arrowPath closePath];
+        
+        [path appendPath:arrowPath];
     }
     
     return path;

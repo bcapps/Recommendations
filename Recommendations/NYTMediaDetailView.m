@@ -16,11 +16,11 @@
 // convert degrees to radians
 #define DEG_TO_RAD(angle) ((angle)/180.0f * M_PI)
 
-// return UIColor with r,g,b values and no alpha channel
-#define RGB(r, g, b) [UIColor colorWithRed:(r/255.0f) green:(g/255.0f) blue:(b/255.0f) alpha:1.0f]
-
-
 @implementation NYTMediaDetailView
+
+- (void)awakeFromNib {
+    _arrowHorizontalCenterValue = CGFLOAT_MAX;
+}
 
 - (void)prepareForReuse {
     [super prepareForReuse];
@@ -98,7 +98,13 @@
     UIBezierPath *path = [UIBezierPath bezierPath];
     
     if (direction == UIPopoverArrowDirectionUp) {
-        CGFloat arrowEdge = CGRectGetMidX(innerRect) + self.arrowOffset - (ARROW_BASE / 2.0f);
+        CGFloat arrowCenterX = self.arrowHorizontalCenterValue;
+        
+        if (arrowCenterX == CGFLOAT_MAX) {
+            arrowCenterX = CGRectGetMidX(innerRect);
+        }
+        
+        CGFloat arrowEdge = arrowCenterX - (ARROW_BASE / 2.0);
         CGRect arrowRect = CGRectMake(CGRectGetMinX(outerRect) + arrowEdge, CGRectGetMinY(rect), ARROW_BASE, ARROW_HEIGHT);
         
         [path moveToPoint:CGPointMake(CGRectGetMinX(innerRect), CGRectGetMinY(outerRect))];

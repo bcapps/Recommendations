@@ -117,7 +117,6 @@ const CGFloat NYTMediaGridLayoutSelectedSupplementaryViewHeight = 400;
             itemSize.width = MIN(columnWidth, itemSize.width);
             
             if ([self.collectionView cellForItemAtIndexPath:itemIndexPath].isSelected) {
-#warning Do supplementary view layout here.
                 self.selectedItemIndexPath = itemIndexPath;
                 shouldIncreaseNextColumnHeightForSelection = YES;
             }

@@ -19,6 +19,8 @@
     
     self.view.backgroundColor = [UIColor clearColor];
     
+    self.tableView.estimatedRowHeight = 44;
+    
     UIView *preventionView = [[UIView alloc] init];
     self.tableView.tableFooterView = preventionView;
     // Uncomment the following line to preserve selection between presentations.
@@ -47,8 +49,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"songCell" forIndexPath:indexPath];
     
-    cell.textLabel.text = @"test";
-    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.textLabel.text = @"test this is a multiple line title will you wrap? Let me know.";
     
     return cell;
 }

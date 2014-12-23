@@ -68,10 +68,8 @@
     NYTMediaDetailView *view = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"detailView" forIndexPath:indexPath];
     
     NYTMediaDetailTableViewController *mediaViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mediaDetailTableViewController"];
-    mediaViewController.view.frame = view.bounds;
-    mediaViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth |UIViewAutoresizingFlexibleHeight;
-    [view addSubview:mediaViewController.view];
-    [mediaViewController didMoveToParentViewController:self];
+    view.parentViewController = self;
+    view.songDetailViewController = mediaViewController;
 
     return view;
 }

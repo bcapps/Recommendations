@@ -12,9 +12,9 @@
 @interface NYTMediaGridLayout ()
 
 @property (nonatomic) NSArray *layoutSections;
+@property (nonatomic) NSIndexPath *selectedItemIndexPath;
 
 @property (nonatomic) CGFloat contentHeight;
-@property (nonatomic) NSUInteger numberOfColumns;
 
 @end
 
@@ -54,7 +54,7 @@
     
     NSMutableArray *layoutSections = [NSMutableArray array];
     
-    self.numberOfColumns = CGRectGetWidth(self.collectionView.bounds) / minimumItemWidth;
+    NSUInteger numberOfColumns = CGRectGetWidth(self.collectionView.bounds) / minimumItemWidth;
     NSUInteger numberOfSections = self.collectionView.numberOfSections;
     
     for (NSUInteger section = 0; section < numberOfSections; section++) {
@@ -68,25 +68,29 @@
         NSMutableArray *cellsLayoutAttributes = [NSMutableArray array];
         
         for (NSUInteger item = 0; item < numberOfItems; item++) {
-            if (currentColumn == self.numberOfColumns) {
+            if (currentColumn == numberOfColumns) {
                 currentSectionYValue += maximumHeightForLine + self.verticalRowSpacing;
                 
                 maximumHeightForLine = 0;
                 currentColumn = 0;
             }
             
-            CGFloat columnWidth = CGRectGetWidth(self.collectionView.bounds) / self.numberOfColumns;
+            CGFloat columnWidth = CGRectGetWidth(self.collectionView.bounds) / numberOfColumns;
             
             CGSize itemSize = self.itemSize;
             
+            NSIndexPath *itemIndexPath = [NSIndexPath indexPathForItem:item inSection:section];
+
             if ([self.collectionView.delegate respondsToSelector:@selector(collectionView:layout:sizeForItemAtIndexPath:)]) {
-                itemSize = [(id<NYTMediaGridLayoutDelegate>)self.collectionView.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]];
+                itemSize = [(id<NYTMediaGridLayoutDelegate>)self.collectionView.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:itemIndexPath];
             }
             
             itemSize.width = MIN(columnWidth, itemSize.width);
             
-            if ([self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]].isSelected) {
+            if ([self.collectionView cellForItemAtIndexPath:itemIndexPath].isSelected) {
 #warning Do supplementary view layout here.
+                self.selectedItemIndexPath = itemIndexPath;
+                
                 itemSize.height = 500;
             }
             
@@ -126,7 +130,6 @@
 }
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)targetRect {
-    
     NSMutableArray *matchingLayoutAttributes = [NSMutableArray array];
     
     CGRect contentRect = CGRectMake(0, 0, self.collectionViewContentSize.width, self.collectionViewContentSize.height);
@@ -177,6 +180,8 @@
     
     return matchingLayoutAttributes;
 }
+
+#pragma mark - Stolen methods from Foursquare
 
 NSComparisonResult compareCGRectMinYIntersection(CGRect targetRect, CGRect comparisonRect) {
     // Target rect minY is either above, inside, or below us.

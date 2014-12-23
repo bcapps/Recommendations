@@ -9,6 +9,8 @@
 #import "NYTMediaGridLayout.h"
 #import "NYTMediaGridLayoutSection.h"
 
+const CGFloat NYTMediaGridLayoutSelectedSupplementaryViewHeight = 200;
+
 @interface NYTMediaGridLayout ()
 
 @property (nonatomic) NSArray *layoutSections;
@@ -48,6 +50,8 @@
 - (void)prepareLayout {
     [super prepareLayout];
     
+    self.selectedItemIndexPath = nil;
+    
     const CGFloat minimumItemWidth = 100;
     
     CGFloat currentOverallYValue = 0;
@@ -67,9 +71,16 @@
         NSUInteger numberOfItems = [self.collectionView numberOfItemsInSection:section];
         NSMutableArray *cellsLayoutAttributes = [NSMutableArray array];
         
+        BOOL shouldIncreaseNextColumnHeightForSelection = NO;
+        
         for (NSUInteger item = 0; item < numberOfItems; item++) {
             if (currentColumn == numberOfColumns) {
                 currentSectionYValue += maximumHeightForLine + self.verticalRowSpacing;
+                
+                if (shouldIncreaseNextColumnHeightForSelection) {
+                    currentSectionYValue += NYTMediaGridLayoutSelectedSupplementaryViewHeight;
+                    shouldIncreaseNextColumnHeightForSelection = NO;
+                }
                 
                 maximumHeightForLine = 0;
                 currentColumn = 0;
@@ -90,8 +101,7 @@
             if ([self.collectionView cellForItemAtIndexPath:itemIndexPath].isSelected) {
 #warning Do supplementary view layout here.
                 self.selectedItemIndexPath = itemIndexPath;
-                
-                itemSize.height = 500;
+                shouldIncreaseNextColumnHeightForSelection = YES;
             }
             
             CGFloat columnStartingX = currentColumn * columnWidth;

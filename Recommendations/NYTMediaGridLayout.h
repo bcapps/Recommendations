@@ -7,7 +7,6 @@
 //
 
 @import UIKit;
-#import <RDHCollectionViewGridLayout/RDHCollectionViewGridLayout.h>
 
 @protocol NYTMediaGridLayoutDelegate <UICollectionViewDelegateFlowLayout>
 

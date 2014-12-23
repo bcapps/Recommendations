@@ -10,7 +10,10 @@
 #import "NYTMediaGridLayout.h"
 
 @interface ViewController ()
+
 @property (weak, nonatomic) IBOutlet NYTMediaGridLayout *alignedLayout;
+
+@property (nonatomic) BOOL cellWasSelected;
 
 @end
 
@@ -37,7 +40,20 @@
     [self.collectionViewLayout invalidateLayout];
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+    self.cellWasSelected = cell.isSelected;
+}
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.cellWasSelected) {
+        [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    }
+
+    [self.collectionView setCollectionViewLayout:[[NYTMediaGridLayout alloc] init] animated:YES];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self.collectionView setCollectionViewLayout:[[NYTMediaGridLayout alloc] init] animated:YES];
 }
 

@@ -19,6 +19,10 @@
 
 @implementation ViewController
 
+- (void)awakeFromNib {
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:@"detailView" withReuseIdentifier:@"detailView"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -59,13 +63,15 @@
     return 20;
 }
 
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     return [self.collectionView dequeueReusableCellWithReuseIdentifier:@"albumCell" forIndexPath:indexPath];
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    return [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"headerView" forIndexPath:indexPath];
+    UICollectionReusableView *view = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"detailView" forIndexPath:indexPath];
+    view.backgroundColor = [UIColor greenColor];
+    
+    return view;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {

@@ -14,7 +14,9 @@ const CGFloat NYTMediaGridLayoutSelectedSupplementaryViewHeight = 200;
 @interface NYTMediaGridLayout ()
 
 @property (nonatomic) NSArray *layoutSections;
+
 @property (nonatomic) NSIndexPath *selectedItemIndexPath;
+@property (nonatomic) UICollectionViewLayoutAttributes *selectedItemAttributes;
 
 @property (nonatomic) CGFloat contentHeight;
 
@@ -51,6 +53,7 @@ const CGFloat NYTMediaGridLayoutSelectedSupplementaryViewHeight = 200;
     [super prepareLayout];
     
     self.selectedItemIndexPath = nil;
+    self.selectedItemAttributes = nil;
     
     const CGFloat minimumItemWidth = 100;
     
@@ -78,7 +81,12 @@ const CGFloat NYTMediaGridLayoutSelectedSupplementaryViewHeight = 200;
                 currentSectionYValue += maximumHeightForLine + self.verticalRowSpacing;
                 
                 if (shouldIncreaseNextColumnHeightForSelection) {
+                    UICollectionViewLayoutAttributes *selectedAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:@"detailView" withIndexPath:self.selectedItemIndexPath];
+                    selectedAttributes.frame = CGRectMake(0, currentSectionYValue, CGRectGetWidth(self.collectionView.bounds), NYTMediaGridLayoutSelectedSupplementaryViewHeight);
+                    self.selectedItemAttributes = selectedAttributes;
+                    
                     currentSectionYValue += NYTMediaGridLayoutSelectedSupplementaryViewHeight;
+                    
                     shouldIncreaseNextColumnHeightForSelection = NO;
                 }
                 
@@ -135,6 +143,10 @@ const CGFloat NYTMediaGridLayoutSelectedSupplementaryViewHeight = 200;
     return [self.layoutSections[indexPath.section] cellsLayoutAttributes][indexPath.item];
 }
 
+- (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
+    return self.selectedItemAttributes;
+}
+
 - (CGSize)collectionViewContentSize {
     return CGSizeMake(CGRectGetWidth(self.collectionView.bounds), self.contentHeight);
 }
@@ -186,6 +198,12 @@ const CGFloat NYTMediaGridLayoutSelectedSupplementaryViewHeight = 200;
                 }
             }
         }];
+    }
+    
+    if (self.selectedItemAttributes) {
+        if (CGRectIntersectsRect(self.selectedItemAttributes.frame, targetRect)) {
+            [matchingLayoutAttributes addObject:self.selectedItemAttributes];
+        }
     }
     
     return matchingLayoutAttributes;

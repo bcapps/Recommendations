@@ -9,9 +9,8 @@
 #import "NYTMediaDetailView.h"
 #import "NYTMediaDetailTableViewController.h"
 
-#define ARROW_HEIGHT    15.0f
+#define ARROW_HEIGHT    13.0f
 #define ARROW_BASE      30.0f
-#define EDGE_INSET      15.0f
 
 // convert degrees to radians
 #define DEG_TO_RAD(angle) ((angle)/180.0f * M_PI)
@@ -85,6 +84,8 @@
         return nil;
     }
     
+    const CGFloat topOfArrowToContentMargin = 1.0;
+    
     // corner radius of popover
     CGFloat radius = 0.0;
     
@@ -105,19 +106,13 @@
         }
         
         CGFloat arrowEdge = arrowCenterX - (ARROW_BASE / 2.0);
-        CGRect arrowRect = CGRectMake(CGRectGetMinX(outerRect) + arrowEdge, CGRectGetMinY(rect), ARROW_BASE, ARROW_HEIGHT);
+        CGRect arrowRect = CGRectMake(CGRectGetMinX(outerRect) + arrowEdge, CGRectGetMinY(rect) + topOfArrowToContentMargin, ARROW_BASE, ARROW_HEIGHT);
         
         [path moveToPoint:CGPointMake(CGRectGetMinX(innerRect), CGRectGetMinY(outerRect))];
         
         CGPoint arrowLeftEdgePoint = CGPointMake(CGRectGetMinX(arrowRect), CGRectGetMinY(outerRect));
         CGPoint arrowTopPoint = CGPointMake(CGRectGetMidX(arrowRect), CGRectGetMinY(arrowRect));
         CGPoint arrowRightEdgePoint = CGPointMake(CGRectGetMaxX(arrowRect), CGRectGetMinY(outerRect));
-
-        // Old arrow
-//        [path addLineToPoint:arrowLeftEdgePoint];
-//        [path addLineToPoint:arrowTopPoint];
-//        [path addLineToPoint:arrowRightEdgePoint];
-        
         [path addArcWithCenter:CGPointMake(CGRectGetMaxX(innerRect), CGRectGetMinY(innerRect))
                         radius:radius startAngle:DEG_TO_RAD(270.0f) endAngle:DEG_TO_RAD(0.0f) clockwise:YES];
         [path addArcWithCenter:CGPointMake(CGRectGetMaxX(innerRect), CGRectGetMaxY(innerRect))
@@ -131,12 +126,10 @@
         CGFloat cpLowerOffset = 7;
         CGFloat cpUpperOffset = 5;
         
-        CGPoint arrowPoint = arrowTopPoint;
-        
         UIBezierPath *arrowPath = [[UIBezierPath alloc] init];
         [arrowPath moveToPoint:arrowLeftEdgePoint];
-        [arrowPath addCurveToPoint:arrowPoint controlPoint1:CGPointMake(arrowLeftEdgePoint.x + cpLowerOffset, arrowLeftEdgePoint.y) controlPoint2:CGPointMake(arrowPoint.x - cpUpperOffset, arrowPoint.y)];
-        [arrowPath addCurveToPoint:arrowRightEdgePoint controlPoint1:CGPointMake(arrowPoint.x + cpUpperOffset, arrowPoint.y) controlPoint2:CGPointMake(arrowRightEdgePoint.x - cpLowerOffset, arrowRightEdgePoint.y)];
+        [arrowPath addCurveToPoint:arrowTopPoint controlPoint1:CGPointMake(arrowLeftEdgePoint.x + cpLowerOffset, arrowLeftEdgePoint.y) controlPoint2:CGPointMake(arrowTopPoint.x - cpUpperOffset, arrowTopPoint.y)];
+        [arrowPath addCurveToPoint:arrowRightEdgePoint controlPoint1:CGPointMake(arrowTopPoint.x + cpUpperOffset, arrowTopPoint.y) controlPoint2:CGPointMake(arrowRightEdgePoint.x - cpLowerOffset, arrowRightEdgePoint.y)];
         [arrowPath closePath];
         
         [path appendPath:arrowPath];

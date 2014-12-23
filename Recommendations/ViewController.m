@@ -24,10 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    
     [self.collectionView registerNib:[UINib nibWithNibName:@"NYTMediaDetailView" bundle:nil] forSupplementaryViewOfKind:@"detailView" withReuseIdentifier:@"detailView"];
-    //[self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:@"detailView" withReuseIdentifier:@"detailView"];
     
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
@@ -54,6 +51,7 @@
     }
 
     [self.collectionView setCollectionViewLayout:[[NYTMediaGridLayout alloc] init] animated:YES];
+    [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
 }
 
 #pragma mark - UICollectionViewDataSource

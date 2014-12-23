@@ -78,7 +78,7 @@ const CGFloat NYTMediaGridLayoutSelectedSupplementaryViewHeight = 200;
         
         for (NSUInteger item = 0; item < numberOfItems; item++) {
             if (currentColumn == numberOfColumns) {
-                currentSectionYValue += maximumHeightForLine + self.verticalRowSpacing;
+                currentSectionYValue += maximumHeightForLine;
                 
                 if (shouldIncreaseNextColumnHeightForSelection) {
                     UICollectionViewLayoutAttributes *selectedAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:@"detailView" withIndexPath:self.selectedItemIndexPath];
@@ -89,6 +89,8 @@ const CGFloat NYTMediaGridLayoutSelectedSupplementaryViewHeight = 200;
                     
                     shouldIncreaseNextColumnHeightForSelection = NO;
                 }
+                
+                currentSectionYValue += self.verticalRowSpacing;
                 
                 maximumHeightForLine = 0;
                 currentColumn = 0;

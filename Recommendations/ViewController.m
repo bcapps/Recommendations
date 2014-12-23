@@ -19,12 +19,10 @@
 
 @implementation ViewController
 
-- (void)awakeFromNib {
-    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:@"detailView" withReuseIdentifier:@"detailView"];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:@"detailView" withReuseIdentifier:@"detailView"];
     
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
@@ -50,10 +48,6 @@
         [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
     }
 
-    [self.collectionView setCollectionViewLayout:[[NYTMediaGridLayout alloc] init] animated:YES];
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self.collectionView setCollectionViewLayout:[[NYTMediaGridLayout alloc] init] animated:YES];
 }
 

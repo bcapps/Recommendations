@@ -24,6 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    
     [self.collectionView registerNib:[UINib nibWithNibName:@"NYTMediaDetailView" bundle:nil] forSupplementaryViewOfKind:@"detailView" withReuseIdentifier:@"detailView"];
     //[self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:@"detailView" withReuseIdentifier:@"detailView"];
     

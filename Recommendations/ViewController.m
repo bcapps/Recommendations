@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "NYTMediaGridLayout.h"
+#import "NYTMediaDetailView.h"
+#import "NYTMediaDetailTableViewController.h"
 
 @interface ViewController ()
 
@@ -63,8 +65,14 @@
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    UICollectionReusableView *view = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"detailView" forIndexPath:indexPath];
-    [view setNeedsUpdateConstraints];
+    NYTMediaDetailView *view = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"detailView" forIndexPath:indexPath];
+    
+    NYTMediaDetailTableViewController *mediaViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"mediaDetailTableViewController"];
+    mediaViewController.view.frame = view.bounds;
+    mediaViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth |UIViewAutoresizingFlexibleHeight;
+    [view addSubview:mediaViewController.view];
+    [mediaViewController didMoveToParentViewController:self];
+
     return view;
 }
 

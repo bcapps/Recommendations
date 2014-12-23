@@ -9,7 +9,7 @@
 #import "NYTMediaGridLayout.h"
 #import "NYTMediaGridLayoutSection.h"
 
-const CGFloat NYTMediaGridLayoutSelectedSupplementaryViewHeight = 300;
+const CGFloat NYTMediaGridLayoutSelectedSupplementaryViewHeight = 400;
 
 @interface NYTMediaGridLayout ()
 

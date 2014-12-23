@@ -21,15 +21,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-//    self.alignedLayout.defaultSectionAttributes = [FSQCollectionViewAlignedLayoutSectionAttributes topLeftAlignment];
-//    self.alignedLayout.defaultCellSize = CGSizeMake(150, 150);
-//    self.alignedLayout.defaultCellAttributes = [FSQCollectionViewAlignedLayoutCellAttributes defaultCellAttributes];
     
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
-    
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
@@ -39,6 +33,8 @@
     
     [self.collectionViewLayout invalidateLayout];
 }
+
+#pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];

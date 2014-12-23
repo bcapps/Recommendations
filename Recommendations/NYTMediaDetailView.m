@@ -9,6 +9,17 @@
 #import "NYTMediaDetailView.h"
 #import "NYTMediaDetailTableViewController.h"
 
+#define ARROW_HEIGHT    15.0f
+#define ARROW_BASE      30.0f
+#define EDGE_INSET      15.0f
+
+// convert degrees to radians
+#define DEG_TO_RAD(angle) ((angle)/180.0f * M_PI)
+
+// return UIColor with r,g,b values and no alpha channel
+#define RGB(r, g, b) [UIColor colorWithRed:(r/255.0f) green:(g/255.0f) blue:(b/255.0f) alpha:1.0f]
+
+
 @implementation NYTMediaDetailView
 
 - (void)prepareForReuse {
@@ -20,6 +31,11 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    
+    CAShapeLayer *shapeMask = [[CAShapeLayer alloc] init];
+    shapeMask.frame = self.layer.bounds;
+    shapeMask.path = [self popoverPathWithRect:self.bounds direction:UIPopoverArrowDirectionUp].CGPath;
+    self.layer.mask = shapeMask;
     
     [self layoutChildViewControllerView];
 }
@@ -44,6 +60,62 @@
             [self layoutChildViewControllerView];
         }
     }
+}
+
+- (UIEdgeInsets)edgeInsetsForArrowDirection:(UIPopoverArrowDirection)direction {
+    if (direction == UIPopoverArrowDirectionUp) {
+        return UIEdgeInsetsMake(ARROW_HEIGHT, 0.0f, 0.0f, 0.0f);
+    } else if (direction == UIPopoverArrowDirectionDown) {
+        return UIEdgeInsetsMake(0.0f, 0.0f, ARROW_HEIGHT, 0.0f);
+    } else if (direction == UIPopoverArrowDirectionLeft) {
+        return UIEdgeInsetsMake(0.0f, ARROW_HEIGHT, 0.0f, 0.0f);
+    } else if (direction == UIPopoverArrowDirectionRight) {
+        return UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, ARROW_HEIGHT);
+    } else {
+        return UIEdgeInsetsZero;
+    }
+}
+
+- (CGFloat)arrowOffset {
+    return 0;
+}
+
+- (UIBezierPath *)popoverPathWithRect:(CGRect)rect direction:(UIPopoverArrowDirection)direction {
+    if (CGRectIsEmpty(rect)) {
+        return nil;
+    }
+    
+    // corner radius of popover
+    CGFloat radius = 0.0;
+    
+    // edge insets adjusted for arrow direction
+    UIEdgeInsets edgeInsets = [self edgeInsetsForArrowDirection:direction];
+    
+    // setup two rectangles for popover
+    CGRect outerRect = UIEdgeInsetsInsetRect(rect, edgeInsets);
+    CGRect innerRect = CGRectInset(outerRect, radius, radius);
+    
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    
+    if (direction == UIPopoverArrowDirectionUp) {
+        CGFloat arrowEdge = CGRectGetMidX(innerRect) + self.arrowOffset - (ARROW_BASE / 2.0f);
+        CGRect arrowRect = CGRectMake(CGRectGetMinX(outerRect) + arrowEdge, CGRectGetMinY(rect), ARROW_BASE, ARROW_HEIGHT);
+        
+        [path moveToPoint:CGPointMake(CGRectGetMinX(innerRect), CGRectGetMinY(outerRect))];
+        [path addLineToPoint:CGPointMake(CGRectGetMinX(arrowRect), CGRectGetMinY(outerRect))];
+        [path addLineToPoint:CGPointMake(CGRectGetMidX(arrowRect), CGRectGetMinY(arrowRect))];
+        [path addLineToPoint:CGPointMake(CGRectGetMaxX(arrowRect), CGRectGetMinY(outerRect))];
+        [path addArcWithCenter:CGPointMake(CGRectGetMaxX(innerRect), CGRectGetMinY(innerRect))
+                        radius:radius startAngle:DEG_TO_RAD(270.0f) endAngle:DEG_TO_RAD(0.0f) clockwise:YES];
+        [path addArcWithCenter:CGPointMake(CGRectGetMaxX(innerRect), CGRectGetMaxY(innerRect))
+                        radius:radius startAngle:DEG_TO_RAD(0.0f) endAngle:DEG_TO_RAD(90.0f) clockwise:YES];
+        [path addArcWithCenter:CGPointMake(CGRectGetMinX(innerRect), CGRectGetMaxY(innerRect))
+                        radius:radius startAngle:DEG_TO_RAD(90.0f) endAngle:DEG_TO_RAD(180.0f) clockwise:YES];
+        [path addArcWithCenter:CGPointMake(CGRectGetMinX(innerRect), CGRectGetMinY(innerRect))
+                        radius:radius startAngle:DEG_TO_RAD(180.0f) endAngle:DEG_TO_RAD(270.0f) clockwise:YES];
+    }
+    
+    return path;
 }
 
 @end

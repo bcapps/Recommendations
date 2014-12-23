@@ -19,6 +19,8 @@
     
     self.view.backgroundColor = [UIColor clearColor];
     
+    self.tableView.contentInset = UIEdgeInsetsMake(15.0, 0, 0, 0);
+    
     self.tableView.estimatedRowHeight = 44;
     
     UIView *preventionView = [[UIView alloc] init];

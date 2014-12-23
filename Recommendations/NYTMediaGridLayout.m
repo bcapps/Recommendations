@@ -42,6 +42,7 @@
 
 - (void)commonInitialization {
     _itemSize = CGSizeMake(100, 100);
+    _verticalRowSpacing = 10;
 }
 
 - (void)prepareLayout {
@@ -67,7 +68,7 @@
         NSMutableArray *cellsLayoutAttributes = [NSMutableArray array];
         
         for (NSUInteger item = 0; item < numberOfItems; item++) {
-            if (currentColumn >= self.numberOfColumns) {
+            if (currentColumn == self.numberOfColumns) {
                 currentSectionYValue += maximumHeightForLine + self.verticalRowSpacing;
                 
                 maximumHeightForLine = 0;
@@ -97,6 +98,8 @@
             
             currentColumn++;
         }
+        
+        currentSectionYValue += maximumHeightForLine;
         
         layoutSection.sectionRect = CGRectMake(0, currentOverallYValue, CGRectGetWidth(self.collectionView.bounds), currentSectionYValue);
         layoutSection.cellsLayoutAttributes = cellsLayoutAttributes;

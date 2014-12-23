@@ -6,9 +6,9 @@
 // project.
 
 
-// FSQCollectionViewAlignedLayout
-#define COCOAPODS_POD_AVAILABLE_FSQCollectionViewAlignedLayout
-#define COCOAPODS_VERSION_MAJOR_FSQCollectionViewAlignedLayout 1
-#define COCOAPODS_VERSION_MINOR_FSQCollectionViewAlignedLayout 0
-#define COCOAPODS_VERSION_PATCH_FSQCollectionViewAlignedLayout 2
+// RDHCollectionViewGridLayout
+#define COCOAPODS_POD_AVAILABLE_RDHCollectionViewGridLayout
+#define COCOAPODS_VERSION_MAJOR_RDHCollectionViewGridLayout 1
+#define COCOAPODS_VERSION_MINOR_RDHCollectionViewGridLayout 1
+#define COCOAPODS_VERSION_PATCH_RDHCollectionViewGridLayout 2
 

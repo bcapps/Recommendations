@@ -7,12 +7,10 @@
 //
 
 #import "ViewController.h"
-#import <FSQCollectionViewAlignedLayout/FSQCollectionViewAlignedLayout.h>
+#import "NYTMediaGridLayout.h"
 
-@interface ViewController () <FSQCollectionViewDelegateAlignedLayout>
-@property (weak, nonatomic) IBOutlet FSQCollectionViewAlignedLayout *alignedLayout;
-
-@property (weak, nonatomic) IBOutlet FSQCollectionViewAlignedLayout *flowLayout;
+@interface ViewController ()
+@property (weak, nonatomic) IBOutlet NYTMediaGridLayout *alignedLayout;
 
 @end
 
@@ -21,9 +19,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.alignedLayout.defaultSectionAttributes = [FSQCollectionViewAlignedLayoutSectionAttributes topLeftAlignment];
-    self.alignedLayout.defaultCellSize = CGSizeMake(150, 150);
-    self.alignedLayout.defaultCellAttributes = [FSQCollectionViewAlignedLayoutCellAttributes defaultCellAttributes];
+    self.alignedLayout.itemSize = CGSizeMake(90, 90);
+
+    
+//    self.alignedLayout.defaultSectionAttributes = [FSQCollectionViewAlignedLayoutSectionAttributes topLeftAlignment];
+//    self.alignedLayout.defaultCellSize = CGSizeMake(150, 150);
+//    self.alignedLayout.defaultCellAttributes = [FSQCollectionViewAlignedLayoutCellAttributes defaultCellAttributes];
     
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
@@ -44,10 +45,6 @@
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     return [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"headerView" forIndexPath:indexPath];
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(200, 200);
 }
 
 @end

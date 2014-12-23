@@ -1,1 +1,1 @@
-pod 'FSQCollectionViewAlignedLayout', '~> 1.0'
+pod 'RDHCollectionViewGridLayout'

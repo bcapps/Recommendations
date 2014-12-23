@@ -27,7 +27,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="IIF-gM-In8">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewLayout key="collectionViewLayout" id="who-e5-AaJ" customClass="FSQCollectionViewAlignedLayout"/>
+                        <collectionViewLayout key="collectionViewLayout" id="who-e5-AaJ" customClass="NYTMediaGridLayout"/>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="albumCell" id="gki-5m-wa7" userLabel="Album Cell">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
